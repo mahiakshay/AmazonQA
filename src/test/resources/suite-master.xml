@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="search_suite" verbose="10">
+
+    <parameter name="username" value="${cloudUsername}"/>    <!-- amazon username -->
+    <parameter name="password" value="${cloudPassword}"/>    <!-- password-->
+
+    <suite-files>
+        <suite-file path="suite-files/amazon-test.xml"></suite-file>
+    </suite-files>
+
+</suite>

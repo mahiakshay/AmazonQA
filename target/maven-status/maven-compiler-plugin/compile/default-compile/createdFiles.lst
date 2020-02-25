@@ -1,0 +1,9 @@
+pages/SignIntoYourAccountPage.class
+pages/SelectAPaymentMethodPage.class
+pages/WelcomePage.class
+pages/Page.class
+pages/AppiumManager.class
+pages/HomePage.class
+pages/ChooseYourDeliveryOptionsPage.class
+pages/SignInPage.class
+pages/ProductDetailsPage.class
