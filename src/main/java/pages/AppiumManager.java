@@ -5,7 +5,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -24,7 +23,6 @@ public class AppiumManager {
     private static Properties properties;
     FileInputStream fileInputStream;
     private AppiumDriverLocalService service;
-    private AppiumServiceBuilder builder;
 
     /**
      * Constructor to load application.properties file
@@ -33,7 +31,7 @@ public class AppiumManager {
     public AppiumManager() {
         properties = new Properties();
         try {
-        File file = new File("application.properties");
+        File file = new File("src/test/resources/application.properties");
         fileInputStream = new FileInputStream(file.getAbsolutePath());
         }  catch (FileNotFoundException e) {
             logger.error("Could get the application.properties file");
@@ -83,7 +81,7 @@ public class AppiumManager {
         serverCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
         serverCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         serverCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, properties.getProperty("OS"));
-        serverCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, properties.getProperty("appPackage"));
+        serverCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, properties.getProperty("appPackage"));
         serverCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, properties.getProperty("appActivity"));
         serverCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, properties.getProperty("DEVICENAME"));
         serverCapabilities.setCapability(MobileCapabilityType.UDID, properties.getProperty("UID"));
@@ -97,7 +95,7 @@ public class AppiumManager {
      */
     public void startAppiumServer() {
         logger.info("Starting Appium Server on: " + properties.getProperty("URL"));
-        service = AppiumDriverLocalService.buildService(builder);
+        service = AppiumDriverLocalService.buildDefaultService();
         service.start();
     }
 
